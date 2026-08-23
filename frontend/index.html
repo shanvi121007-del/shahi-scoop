@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shahi Scoop - Royal Desserts</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">🍨 Shahi Scoop</div>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Search royal flavors..." />
+    </div>
+    <div class="nav-actions">
+      <button id="open-sundae-btn" class="sundae-btn">✨ Build Custom Sundae</button>
+      <div class="nav-icon">❤️ <span id="wishlist-count">0</span></div>
+      <button id="cart-btn" class="cart-btn">🛒 Basket <span id="cart-badge">0</span></button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section class="hero">
+      <h1>Royal Indian Desserts & Artisanal Ice Creams</h1>
+      <p>Handcrafted with authentic ingredients, saffron, and organic preserves.</p>
+    </section>
+
+    <!-- Category Filters -->
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-category="all">All Flavors</button>
+      <button class="filter-tab" data-category="desi specials">Desi Specials</button>
+      <button class="filter-tab" data-category="classics">Classics</button>
+      <button class="filter-tab" data-category="seasonal delights">Seasonal Delights</button>
+      <button class="filter-tab" data-category="fusion sundaes">Fusion Sundaes</button>
+    </div>
+
+    <!-- Menu Grid -->
+    <div id="menu-container" class="menu-grid"></div>
+  </main>
+
+  <!-- Cart Drawer -->
+  <div id="cart-overlay" class="cart-overlay"></div>
+  <aside id="cart-drawer" class="cart-drawer">
+    <div class="drawer-header">
+      <h2>Your Royal Basket</h2>
+      <button id="close-cart-btn" class="close-btn">&times;</button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="drawer-footer">
+      <div class="coupon-section">
+        <input type="text" id="coupon-input" placeholder="Coupon (SHAHI10 / SHAHI20)" />
+        <button id="apply-coupon-btn">Apply</button>
+      </div>
+      <p id="coupon-msg" class="coupon-msg"></p>
+      <div class="total-row">
+        <span>Total Amount:</span>
+        <span id="cart-total-price">₹0</span>
+      </div>
+      <button id="checkout-btn" class="checkout-btn">Proceed to UPI Checkout</button>
+    </div>
+  </aside>
+
+  <!-- Custom Sundae Builder Modal -->
+  <div id="sundae-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>✨ Craft Your Custom Sundae</h2>
+        <button id="close-sundae-btn" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <label for="sundae-base">Choose Base Scoop (+₹100 Base Price):</label>
+        <select id="sundae-base">
+          <option value="Vanilla|20">Royal Vanilla (+₹20)</option>
+          <option value="Cardamom|30">Shahi Cardamom (+₹30)</option>
+          <option value="Saffron Pistachio|50">Zafrani Pista (+₹50)</option>
+        </select>
+
+        <label for="sundae-sauce">Select Dessert Sauce:</label>
+        <select id="sundae-sauce">
+          <option value="None">None (₹0)</option>
+          <option value="Rabri Drizzle">Rabri Drizzle (+₹30)</option>
+          <option value="Chocolate Fudge">Rich Chocolate Fudge (+₹30)</option>
+          <option value="Gulkand Syrup">Gulkand Syrup (+₹30)</option>
+        </select>
+
+        <fieldset class="toppings-group">
+          <legend>Add Toppings (+₹20 each):</legend>
+          <label><input type="checkbox" class="topping-cb" value="Crushed Almonds" /> Crushed Almonds</label>
+          <label><input type="checkbox" class="topping-cb" value="Silver Leaf (Vark)" /> Silver Leaf (Vark)</label>
+          <label><input type="checkbox" class="topping-cb" value="Tutty Fruity" /> Tutty Fruity</label>
+          <label><input type="checkbox" class="topping-cb" value="Saffron Strands" /> Saffron Strands</label>
+        </fieldset>
+      </div>
+      <div class="modal-footer">
+        <button id="add-sundae-to-cart-btn" class="checkout-btn">Add Sundae to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPI Modal -->
+  <div id="upi-modal" class="modal">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h2>Pay via UPI</h2>
+        <button id="close-upi-btn" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p id="upi-order-id" class="order-info"></p>
+        <img id="upi-qr-img" src="" alt="UPI QR Code" class="qr-code" />
+        <p class="qr-instruction">Scan using PhonePe, Google Pay, or Paytm to complete payment.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
