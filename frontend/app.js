@@ -62,7 +62,7 @@ function renderMenu(items) {
           </div>
           <div class="card-footer">
             <span class="price">₹${item.price}</span>
-            <button class="add-btn" onclick="addToCart(${item.id})">+ Add</button>
+            <button class="add-btn" onclick="addToCart('${item.id}')">+ Add</button>
           </div>
         </div>
       </div>
@@ -96,10 +96,11 @@ document.querySelectorAll('.filter-tab').forEach(btn => {
 
 // Wishlist Logic
 function toggleWishlist(id) {
-  if (wishlist.includes(id)) {
-    wishlist = wishlist.filter(item => item !== id);
+  const parsedId =isNaN(id) ? id : Number(id);
+  if (wishlist.includes(parsedId)) {
+    wishlist = wishlist.filter(item => item !== parsedId);
   } else {
-    wishlist.push(id);
+    wishlist.push(parsedId);
   }
   document.getElementById('wishlist-count').innerText = wishlist.length;
   filterAndSearch();
@@ -107,8 +108,11 @@ function toggleWishlist(id) {
 
 // Cart & Quantity Logic
 function addToCart(id) {
-  const item = menuData.find(i => i.id === id);
-  const existing = cart.find(i => i.id === id);
+  const targetId = isNaN(id) ? id : Number(id);
+  const item = menuData.find(i => i.id === targetId);
+  if (!item) return;
+  
+  const existing = cart.find(i => i.id === targetId);
 
   if (existing) {
     existing.quantity += 1;
@@ -121,12 +125,13 @@ function addToCart(id) {
 }
 
 function changeQuantity(id, amount) {
-  const item = cart.find(i => i.id === id);
+  const targetId = isNaN(id) ? id : Number(id);
+  const item = cart.find(i => i.id === targetId);
   if (!item) return;
 
   item.quantity += amount;
   if (item.quantity <= 0) {
-    cart = cart.filter(i => i.id !== id);
+    cart = cart.filter(i => i.id !== targetId);
   }
 
   updateCartUI();
